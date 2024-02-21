@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Machine Learning Input</title>
+</head>
+<body>
+    <h1>Machine Learning Input Form</h1>
+    <form action="/predict" method="post">
+        <label for="temperature_difference">Temperature Difference (°C):</label>
+        <input type="text" name="temperature_difference" required><br><br>
+
+        <label for="temperature_power">Temperature Power (°C):</label>
+        <input type="text" name="temperature_power" required><br><br>
+
+        <label for="rotational_speed">Rotational Speed (rpm):</label>
+        <input type="text" name="rotational_speed" required><br><br>
+
+        <label for="process_temperature">Process Temperature (°C):</label>
+        <input type="text" name="process_temperature" required><br><br>
+
+        <label for="torque">Torque (Nm):</label>
+        <input type="text" name="torque" required><br><br>
+
+        <label for="type">Type (1 for L, 2 for M, 3 for H):</label>
+        <input type="text" name="type" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike World</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">PMML</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Collection</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Predictive Maintenance 
+            of Machinery Using 
+            Machine Learning</h2>
+        
+        <body>
+            <h1>Machine Learning Model on ESP32</h1>
+            <form action="/predict" method="post">
+                <div class="form-group">
+                    <label for="AIR_TEMPERATURE">AIR TEMPERATURE</label>
+                    <input type="number" class="form-control" id="AIR TEMPERATURE" placeholder="Enter AIR TEMPERATURE ">
+                </div>
+                <div class="form-group">
+                    <label for="TEMPARATURE_POWER">TEMPERATURE POWER</label>
+                    <input type="number" class="form-control" id="TEMPERATURE POWER" placeholder="Enter TEMPERATURE POWER">
+                </div>
+                <div class="form-group">
+                    <label for="ROTATIONAL_SPEED">ROTATIONAL SPEED</label>
+                    <input type="number" class="form-control" id="ROTATIONAL SPEED" placeholder="Enter ROTATIONAL SPEED ">
+                </div>
+                <div class="form-group">
+                    <label for="PROCEESS_TEMPARATURE">PROCESS TEMPARATURE</label>
+                    <input type="number" class="form-control" id="PROCEESS TEMPARATURE" placeholder="Enter PROCEESS TEMPARATURE ">
+                </div>
+                <div class="form-group">
+                    <label for="TORQUE">TORQUE</label>
+                    <input type="number" class="form-control" id="TORQUE" placeholder="Enter TORQUE ">
+                </div>
+                <div class="form-group">
+                    <label for="TYPE">TYPE(1 for L, 2 for M, 3 for H):</label>
+                    <input type="number" class="form-control" id="TYPE(QUALITY-UDI)" placeholder="Enter TYPE(QUALITY-UDI) ">
+                </div>
+                
+                
+                <a href="#" >
+                    <button type="Predict" value="Predict" class="btn btn-primary">Submit</button>
+
+                </a>
+            </form>
+            <div id="prediction"></div>
+            <script>
+                $("form").submit(function(e) {
+                    e.preventDefault();
+                    let sensor1 = $("#sensor1").val();
+                    let sensor2 = $("#sensor2").val();
+                    let sensor3 = $("#sensor3").val();
+        
+                    // Here, replace with actual URL for making API request to ESP32
+                    let url = "http://esp32-url/api/prediction";
+                    let data = { AIR_TEMPERATURE ,PROCESS_TEMPERATURE, ROTATIONAL_SPEED };
+        
+                    $.ajax({
+                        url: url,
+                        method: "POST",
+                        data: JSON.stringify(data),
+                        contentType: "application/json",
+                        success: function(response) {
+                            $("#prediction").html("<h3>Prediction: " + response.prediction + "</h3>");
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                });
+            </script>
+        </body>
+        
